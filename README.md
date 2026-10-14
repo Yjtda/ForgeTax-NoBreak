@@ -4,6 +4,8 @@
 
 ## v1.0.0 安装包
 
+直接下载：[ForgeTax-NoBreak-v1.0.0-install.zip](../../raw/refs/heads/main/dist/ForgeTax-NoBreak-v1.0.0-install.zip)
+
 This package prevents sword destruction in ForgeTax by converting destruction
 tickets and destruction outcomes into damage.
 
