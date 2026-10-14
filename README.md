@@ -2,99 +2,70 @@
 
 两拳打穿概率论，从此我是铸剑神。
 
-## v1.0.0 安装包
+ForgeTax No Break 会把铸剑过程中的“破坏”结果转换为“损坏”，因此不会直接
+摧毁正在锻造的剑。默认开启，也可以随时在配置文件中关闭。
 
-直接下载：
-
-[ForgeTax-NoBreak-v1.0.0-install.zip](https://github.com/Yjtda/ForgeTax-NoBreak/raw/refs/heads/main/dist/ForgeTax-NoBreak-v1.0.0-install.zip)
-
-SHA-256 校验值：
-
-`CAB8ABC7C31D8FBBE0AFDA4C5680F360DEDBED23CBDDB7CF5410A61F84E37685`
-
-## 功能
-
-这个 Mod 会把游戏中的“破坏”结果转换为“损坏”结果：
-
-- 破坏票会转移到损坏票；
-- 最终结算时再次拦截破坏结果；
-- 游戏内显示的破坏概率会变为 0；
-- 不修改原始 `Assembly-CSharp.dll`；
-- 支持通过配置文件随时关闭。
-
-## 自动安装
+## v1.1.0：解压到游戏目录后一键安装
 
 1. 关闭 ForgeTax。
-2. 下载并解压上面的 ZIP 安装包。
-3. 运行 `Install-ForgeTaxNoBreak.ps1`。
-4. 输入包含 `ForgeTax.exe` 的游戏目录。
-5. 通过 Steam 启动游戏。
+2. 下载并解压 `ForgeTax-NoBreak-v1.1.0-install.zip`。
+3. 把解压出来的所有文件直接放进包含 `ForgeTax.exe` 的游戏目录。
+4. 双击运行 `Install-ForgeTaxNoBreak.bat`。
+5. 看到 `[OK] Installation completed` 后，通过 Steam 启动游戏。
 
 通常的游戏目录是：
 
-`SteamLibrary\\steamapps\\common\\ForgeTax`
+`SteamLibrary\steamapps\common\ForgeTax`
 
-如果电脑中已经安装了 BepInEx，安装脚本会保留已有的加载器文件，只安装本 Mod。
+安装器会自动使用自身所在目录，不再要求手动输入路径。它会保留已有的
+BepInEx 引导文件；如果游戏还没有 BepInEx，则会自动安装随包提供的
+BepInEx 5.4.23.3 文件。
 
-## 手动安装
+## 下载与校验
 
-将安装包中的 `payload` 文件夹内容复制到 ForgeTax 游戏目录，并保持文件夹结构：
-
-```text
-ForgeTax/
-├─ winhttp.dll
-├─ doorstop_config.ini
-└─ BepInEx/
-   ├─ core/
-   └─ plugins/
-      └─ ForgeTaxNoBreak.dll
-```
-
-然后重新启动游戏。
+- [下载 v1.1.0 安装包](https://github.com/Yjtda/ForgeTax-NoBreak/releases/download/v1.1.0/ForgeTax-NoBreak-v1.1.0-install.zip)
+- SHA-256：请查看 GitHub Release 页面中的 `SHA256SUMS.txt`
 
 ## 开关
 
-首次启动游戏后，打开：
+首次启动游戏后，编辑：
 
-`ForgeTax\\BepInEx\\config\\jacky.forgetax.nobreak.cfg`
+`BepInEx\config\jacky.forgetax.nobreak.cfg`
 
-启用：
+设置：
 
 ```ini
 EnableNoBreak = true
 ```
 
-关闭：
-
-```ini
-EnableNoBreak = false
-```
-
-修改后需要重启游戏。
+设为 `false` 可以关闭本 Mod。修改后重启游戏。
 
 ## 卸载
 
-只需删除：
+关闭游戏后，删除：
 
-`ForgeTax\\BepInEx\\plugins\\ForgeTaxNoBreak.dll`
+`BepInEx\plugins\ForgeTaxNoBreak.dll`
 
-本 Mod 不会修改原始游戏程序集。如果 BepInEx 只用于这个 Mod，也可以在删除插件后移除 BepInEx；如果还有其他 BepInEx Mod，请保留加载器。
+本 Mod 不会修改 `ForgeTax_Data\Managed\Assembly-CSharp.dll`。如果该游戏目录
+中的 BepInEx 只为本 Mod 安装，也可以在删除插件后移除 BepInEx 引导文件；如果
+还有其他 BepInEx Mod，请保留它们。
 
-## 验证
+## 验证是否生效
 
-日志文件位置：
+查看：
 
-`ForgeTax\\BepInEx\\LogOutput.log`
+`BepInEx\LogOutput.log`
 
-当游戏抽到原本会导致破坏的结果时，日志会出现：
+启动时应能看到：
 
-```text
-Converted a destruction outcome to damage.
-```
+`ForgeTax No Break loaded: destruction is converted to damage.`
 
-## 文件
+触发转换时还会记录：
 
-- [安装包](https://github.com/Yjtda/ForgeTax-NoBreak/raw/refs/heads/main/dist/ForgeTax-NoBreak-v1.0.0-install.zip)
-- [自动安装脚本](https://github.com/Yjtda/ForgeTax-NoBreak/blob/main/Install-ForgeTaxNoBreak.ps1)
-- [Mod 源码](https://github.com/Yjtda/ForgeTax-NoBreak/blob/main/src/ForgeTaxNoBreak.cs)
-- [SHA-256 校验值](https://github.com/Yjtda/ForgeTax-NoBreak/blob/main/SHA256SUMS.txt)
+`Converted a destruction outcome to damage.`
+
+## 手动安装
+
+如果不想运行一键安装器，也可以把 `payload` 文件夹内的内容按原目录结构
+复制到游戏目录。一般用户直接运行 `Install-ForgeTaxNoBreak.bat` 即可。
+
