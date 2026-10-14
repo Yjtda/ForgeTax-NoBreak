@@ -12,6 +12,11 @@ function Resolve-GamePath {
         return (Resolve-Path -LiteralPath $Candidate).Path
     }
 
+    $packageDirectory = (Resolve-Path -LiteralPath $PSScriptRoot).Path
+    if (Test-Path -LiteralPath (Join-Path $packageDirectory 'ForgeTax.exe') -PathType Leaf) {
+        return $packageDirectory
+    }
+
     $enteredPath = Read-Host 'Enter the ForgeTax game folder containing ForgeTax.exe'
     if (-not $enteredPath) {
         throw 'No game folder was provided.'
