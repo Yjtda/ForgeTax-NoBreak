@@ -13,7 +13,7 @@ public sealed class ForgeTaxNoBreak : BaseUnityPlugin
 {
     internal const string PluginGuid = "jacky.forgetax.nobreak";
     internal const string PluginName = "ForgeTax No Break";
-    internal const string PluginVersion = "1.0.0";
+    internal const string PluginVersion = "1.1.0";
 
     internal static ManualLogSource Log;
     internal static ConfigEntry<bool> Enabled;
